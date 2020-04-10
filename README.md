@@ -6,11 +6,11 @@
 
 ## 1. Paper abstract ([arxiv](https://arxiv.org/abs/1910.02776))
 
-We introduce bio-inspired artificial neural networks consisting of neurons that are additionally characterized by spatial positions. 
-To simulate properties of biological systems we add the costs penalizing long connections and the proximity of neurons in a two-dimensional space. 
-Our experiments show that in the case where the network performs two different tasks, the neurons naturally split into clusters, 
-where each cluster is responsible for processing a different task. This behavior 
-not only corresponds to the biological systems, but also allows for further insight into interpretability or continual learning. 
+We introduce bio-inspired artificial neural networks consisting of neurons that are additionally characterized by spatial positions.
+To simulate properties of biological systems we add the costs penalizing long connections and the proximity of neurons in a two-dimensional space.
+Our experiments show that in the case where the network performs two different tasks, the neurons naturally split into clusters,
+where each cluster is responsible for processing a different task. This behavior
+not only corresponds to the biological systems, but also allows for further insight into interpretability or continual learning.
 
 ## 2. Dependencies
 
@@ -50,3 +50,58 @@ Currently following options are available
 Issue `python main.py <subsection> --help` to see available options for each subsection.
 
 To help with reproducibility later, please wrap your experiments commands with `dvc` (see their [documentation](https://dvc.org/doc)).
+
+
+## Train
+
+usage: main.py train [-h] --hyperparams HYPERPARAMS [--datasets DATASETS [DATASETS ...]] [--root ROOT] --layers LAYERS [LAYERS ...]
+                     [--where WHERE [WHERE ...]] --type {linear,convolution} --input {sequential,concatenate,mix} --activation ACTIVATION --save SAVE
+                     --tensorboard TENSORBOARD [--task] [--proximity PROXIMITY] [--transport TRANSPORT] [--norm {l1,l2}]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --hyperparams HYPERPARAMS
+                        JSON file containing hyperparameters.
+                        Defaults probably shouldn't be changed as those are more related to hyperparameters search rather than experiments.
+  --datasets DATASETS [DATASETS ...]
+                        Name of torchvision datasets used in experiment.
+                        Restrictions and traits:
+                        - Provided datasets have to be proper object from torchvision.datasets.
+                        - Provided datasets need the same input shape.
+                        - Provided datasets CAN HAVE varying number of labels (modulo will be taken).
+                        This option is case sensitive.
+                        Default: ['MNIST', 'FashionMNIST', 'KMNIST', 'QMNIST']
+  --root ROOT           Where downloaded datasets will be saved. By default inside your temporary folder.
+  --layers LAYERS [LAYERS ...]
+                        Size of each hidden layer specified as integer (specify as many as you want).
+                        Length of layers has to be greater than maximum index specified by '--where' option
+  --where WHERE [WHERE ...]
+                        Indices of layers to which we apply the spatial costs.
+                        Those are calculated based on modules function, not children.
+                        Check whether your model is as you desired (will be printed at the beginning of training).
+                        If unspecified, the spatial costs won't be applied to any layers (default behaviour).
+  --type {linear,convolution}
+                        Type of layer. One of "Linear" or "Convolution" available.This option is case insensitive.
+  --input {sequential,concatenate,mix}
+                        Type of input (how data will be presented for the neural net). Available modes:
+                        - "Sequential"
+                        - "Mix"
+                        - "Concatenate"
+                        This option is case insensitive.
+  --activation ACTIVATION
+                        torch.nn module to be used as network's activation.
+                        This option is case sensitive and has to be specified EXACTLY as respective class inside 'torch.nn' package.
+  --save SAVE           Where best model will be saved.
+  --tensorboard TENSORBOARD
+                        Where tensorboard data will be saved.
+  --task                Type of Sampler used for sequential inputs.
+                        Either 'Random' (for random access across all tasks)or 'Task' (iterate over task sequentially as well).
+                        Only used when --input is chosen to be sequential and has to be specified in this case.
+                        Default: Random
+  --proximity PROXIMITY
+                        Proximity loss parameter specified as float for all Spatial Layers (if any).
+                         Default: 0 (acts just like Linear)
+  --transport TRANSPORT
+                        Transport loss parameter specified as float for all Spatial Layers (if any).
+                         Default: 0 (acts just like Linear)
+  --norm {l1,l2}        Norm used in transport loss. Either L1 or L2. Case insensitive

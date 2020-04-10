@@ -2,4 +2,4 @@
 
 cd docker && \
 docker-compose build && \
-docker-compose run main python main.py train --help
+docker-compose run main ./train.sh

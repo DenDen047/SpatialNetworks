@@ -52,6 +52,26 @@ Issue `python main.py <subsection> --help` to see available options for each sub
 To help with reproducibility later, please wrap your experiments commands with `dvc` (see their [documentation](https://dvc.org/doc)).
 
 
+## Basic Command
+
+usage: main.py [-h] [--cuda] --labels LABELS {train,record,plot,split,score} ...
+
+positional arguments:
+  {train,record,plot,split,score}
+                        Actions to perform:
+    train               Fit neural network
+    record              Record activations of saved network.
+    plot                Plot recorded activations.
+    split               Split neural network into per-task networks.
+    score               Check performance of splitted neural networks.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --cuda                Whether to use GPU instance.
+  --labels LABELS       How many labels are used for classification. If more classes in dataset available, modulo will be taken from this dataset (e.g. 50
+                        labels will become 5 datasets, 10 labels each).
+
+
 ## Train
 
 usage: main.py train [-h] --hyperparams HYPERPARAMS [--datasets DATASETS [DATASETS ...]] [--root ROOT] --layers LAYERS [LAYERS ...]

@@ -8,5 +8,4 @@ services:
       dockerfile: Dockerfile
     volumes:
       - "../src:/work"
-      - "../data:/data"
     working_dir: '/work'

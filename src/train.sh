@@ -1,7 +1,8 @@
 #!/bin/bash
 
-python main.py --labels 50 train \
+python main.py --labels 10 train \
     --hyperparams hyperparameters.json \
+    --datasets MNIST FashionMNIST \
     --layers 128 128 128 256 \
     --where 2 3 \
     --type linear \
@@ -9,4 +10,6 @@ python main.py --labels 50 train \
     --activation Sigmoid \
     --save /result/models \
     --tensorboard /result/tensorboard \
+    --proximity 3 \
+    --transport 1 \
     --norm l1

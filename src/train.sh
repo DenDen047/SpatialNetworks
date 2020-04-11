@@ -8,7 +8,7 @@ python main.py --labels 10 train \
     --type linear \
     --input sequential \
     --activation Sigmoid \
-    --save /result/models \
+    --save /result/models/model \
     --tensorboard /result/tensorboard \
     --proximity 3 \
     --transport 1 \

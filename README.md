@@ -125,3 +125,39 @@ optional arguments:
                         Transport loss parameter specified as float for all Spatial Layers (if any).
                          Default: 0 (acts just like Linear)
   --norm {l1,l2}        Norm used in transport loss. Either L1 or L2. Case insensitive
+
+## Record
+
+usage: main.py record [-h] --model MODEL --input {sequential,concatenate,mix} [--datasets DATASETS [DATASETS ...]] --reduction {mean,variance} --save SAVE
+                      [--task] [--train] [--root ROOT]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --model MODEL         Path to trained model.
+  --input {sequential,concatenate,mix}
+                        Type of input (how data will be presented for the neural net). Available modes:
+                        - "Sequential"
+                        - "Mix"
+                        - "Concatenate"
+                        This option is case insensitive.
+  --datasets DATASETS [DATASETS ...]
+                        Name of torchvision datasets used in experiment.
+                        Restrictions and traits:
+                        - Provided datasets have to be proper object from torchvision.datasets.
+                        - Provided datasets need the same input shape.
+                        - Provided datasets CAN HAVE varying number of labels (modulo will be taken).
+                        This option is case sensitive.
+                        Default: ['MNIST', 'FashionMNIST', 'KMNIST', 'QMNIST']
+  --reduction {mean,variance}
+                        What reduction to use. Available options:
+                        - "Mean"
+                        - "Variance"
+                        This option is case insensitive.
+  --save SAVE           Path where recorded data will be saved.
+                        Folder should be provided, structure will be created automatically.
+  --task                Type of Sampler used for sequential inputs.
+                        Either 'Random' (for random access across all tasks)or 'Task' (iterate over task sequentially as well).
+                        Only used when --input is chosen to be sequential and has to be specified in this case.
+                        Default: Random
+  --train               Whether to use training or validation dataset for plot generation. If specified, use training. Default: validation dataset.
+  --root ROOT           Where downloaded datasets will be saved. By default inside your temporary folder.

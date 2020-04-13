@@ -12,4 +12,5 @@ python main.py --labels 10 train \
     --tensorboard /result/tensorboard \
     --proximity 3 \
     --transport 1 \
-    --norm l1
+    --norm l1 \
+    --root /datasets

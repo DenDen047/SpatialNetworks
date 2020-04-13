@@ -10,4 +10,5 @@ services:
       - "../src:/work"
       - "../result:/result"
       - "../data:/data"
+      - "../datasets:/datasets"
     working_dir: '/work'

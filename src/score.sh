@@ -7,4 +7,5 @@ python main.py --labels 10 score \
     --input sequential \
     --datasets MNIST FashionMNIST \
     --tensorboard /result/tensorboard \
-    --train
+    --train \
+    --root /datasets

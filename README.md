@@ -214,3 +214,20 @@ optional arguments:
                         and has to be specified in this case. Default: Random
   --train               Whether to use training or validation dataset to perform scoring.
   --root ROOT           Where downloaded datasets will be saved. By default inside your temporary folder.
+
+# Examples of model
+
+Model to be trained:
+MultipleOutputs(
+  (layers): Sequential(
+    (0): _SpatialLinear(in_features=784, out_features=128, bias=True)
+    (1): Sigmoid()
+    (2): _SpatialLinear(in_features=128, out_features=128, bias=True)
+    (3): Sigmoid()
+    (4): _SpatialLinear(in_features=128, out_features=128, bias=True)
+    (5): Sigmoid()
+    (6): _SpatialLinear(in_features=128, out_features=256, bias=True)
+    (7): Sigmoid()
+  )
+  (bottleneck): _SpatialLinear(in_features=256, out_features=20, bias=True)
+)

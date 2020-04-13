@@ -4,7 +4,7 @@ python main.py --labels 10 train \
     --hyperparams hyperparameters.json \
     --datasets MNIST FashionMNIST \
     --layers 128 128 128 256 \
-    --where 2 3 \
+    --where 4 5 6 7 \
     --type linear \
     --input sequential \
     --activation Sigmoid \

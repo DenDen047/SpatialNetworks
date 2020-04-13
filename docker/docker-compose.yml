@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  main:
+    image: denden047/spatial_networks:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "../src:/work"
+      - "../result:/result"
+      - "../data:/data"
+      - "../datasets:/datasets"
+    working_dir: '/work'

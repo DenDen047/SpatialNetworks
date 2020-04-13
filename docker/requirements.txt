@@ -5,4 +5,4 @@ torchvision
 tensorboard
 torchfunc
 torchdata
--e ./deps/torchlayers
+-e /deps/torchlayers

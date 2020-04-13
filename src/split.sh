@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# plot spatial locations of each layer
+# split networks into task-specific subnetworks via some method
 python main.py --labels 10 split \
     --method greedy \
-    --where 2 3 \
+    --where 1 2 3 4 5 \
     --data /data/split \
     --model /result/models/model \
     --save /result/split

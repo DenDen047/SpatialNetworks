@@ -44,8 +44,8 @@ Currently following options are available
 - [x] `train` - train neural network
 - [ ] `record` - record per task activations of neural network for later user with **cuda**
 - [ ] `plot` - plot spatial locations of each layer
-- [ ] `split` - split networks into task-specific subnetworks via some method
-- [ ] `score` - score each network on specific task
+- [x] `split` - split networks into task-specific subnetworks via some method
+- [x] `score` - score each network on specific task
 
 Issue `python main.py <subsection> --help` to see available options for each subsection.
 
@@ -192,3 +192,25 @@ optional arguments:
                         Specify only if Activations used.
   --model MODEL         Path to saved model.
   --save SAVE           Path (folder) where generated models will be saved.
+
+## Score
+
+usage: main.py score [-h] --hyperparams HYPERPARAMS --models MODELS --input {sequential,concatenate,mix} [--datasets DATASETS [DATASETS ...]] --tensorboard TENSORBOARD [--task] [--train] [--root ROOT]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --hyperparams HYPERPARAMS
+                        JSON file containing hyperparameters. Defaults probably shouldn't be changed as those are more related to hyperparameters search rather than experiments. If you want to find best model on given task,
+                        use shell wrapper "find" inside /src.
+  --models MODELS       Path (folder) containing splitted models (from split step).
+  --input {sequential,concatenate,mix}
+                        Type of input (how data will be presented for the neural net). Available modes: - "Sequential" - "Mix" - "Concatenate" This option is case insensitive.
+  --datasets DATASETS [DATASETS ...]
+                        Name of torchvision datasets used in experiment. - Provided datasets have to be proper object from torchvision.datasets. - Provided datasets need the same input shape. - Provided datasets need CAN
+                        HAVE varying number of labels (modulo will be taken). This option is case sensitive. Default: ["MNIST", "FashionMNIST", "KMNIST", "QMNIST"]
+  --tensorboard TENSORBOARD
+                        Where results will be saved to tensorboard
+  --task                Type of Sampler used for sequential inputs. Either 'Random' (for random access across all tasks)or 'Task' (iterate over task sequentially as well). Only used when --input is chosen to be sequential
+                        and has to be specified in this case. Default: Random
+  --train               Whether to use training or validation dataset to perform scoring.
+  --root ROOT           Where downloaded datasets will be saved. By default inside your temporary folder.

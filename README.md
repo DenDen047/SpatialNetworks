@@ -60,7 +60,7 @@ positional arguments:
   {train,record,plot,split,score}
                         Actions to perform:
     train               Fit neural network
-    record              Record activations of saved network.
+    record              Record activations of saved network with **cuda**.
     plot                Plot recorded activations.
     split               Split neural network into per-task networks.
     score               Check performance of splitted neural networks.

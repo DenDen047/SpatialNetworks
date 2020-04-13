@@ -41,11 +41,11 @@ To perform specific part use `python main.py <subsection>`.
 
 Currently following options are available
 
-- `train` - train neural network
-- `record` - record per task activations of neural network for later user
-- `plot` - plot spatial locations of each layer
-- `split` - split networks into task-specific subnetworks via some method
-- `score` - score each network on specific task
+- [x] `train` - train neural network
+- [ ] `record` - record per task activations of neural network for later user with **cuda**
+- [ ] `plot` - plot spatial locations of each layer
+- [ ] `split` - split networks into task-specific subnetworks via some method
+- [ ] `score` - score each network on specific task
 
 Issue `python main.py <subsection> --help` to see available options for each subsection.
 
@@ -60,7 +60,7 @@ positional arguments:
   {train,record,plot,split,score}
                         Actions to perform:
     train               Fit neural network
-    record              Record activations of saved network with **cuda**.
+    record              Record activations of saved network.
     plot                Plot recorded activations.
     split               Split neural network into per-task networks.
     score               Check performance of splitted neural networks.
@@ -161,3 +161,13 @@ optional arguments:
                         Default: Random
   --train               Whether to use training or validation dataset for plot generation. If specified, use training. Default: validation dataset.
   --root ROOT           Where downloaded datasets will be saved. By default inside your temporary folder.
+
+## Plot
+
+usage: main.py plot [-h] [--data DATA] [--model MODEL] --save SAVE
+
+optional arguments:
+  -h, --help     show this help message and exit
+  --data DATA    Folder where recorded activations from record step are stored. If specified, will plot per-task activations strength within every layer.
+  --model MODEL  Path to model whose spatial parameters will be plotted.
+  --save SAVE    Path where generated plots will be saved.

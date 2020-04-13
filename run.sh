@@ -2,4 +2,4 @@
 
 cd docker && \
 docker-compose build && \
-docker-compose run main ./record.sh
+docker-compose run main ./plot.sh

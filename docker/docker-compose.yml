@@ -9,4 +9,5 @@ services:
     volumes:
       - "../src:/work"
       - "../result:/result"
+      - "../data:/data"
     working_dir: '/work'

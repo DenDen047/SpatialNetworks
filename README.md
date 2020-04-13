@@ -171,3 +171,24 @@ optional arguments:
   --data DATA    Folder where recorded activations from record step are stored. If specified, will plot per-task activations strength within every layer.
   --model MODEL  Path to model whose spatial parameters will be plotted.
   --save SAVE    Path where generated plots will be saved.
+
+## Split
+
+usage: main.py split [-h] --method {activations,greedy,rescale,probability} [--where WHERE [WHERE ...]] [--data DATA] --model MODEL --save SAVE
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --method {activations,greedy,rescale,probability}
+                        Method to split neural network.
+                        Available options:
+                        -'Activations' (to be fixed)
+                        -'Greedy'
+                        -'Rescale'
+                        -'Probability'
+                        Option is case insensitive.
+  --where WHERE [WHERE ...]
+                        Indices of linear modules that will be split.
+  --data DATA           Folder where recorded activations are stored (record step).
+                        Specify only if Activations used.
+  --model MODEL         Path to saved model.
+  --save SAVE           Path (folder) where generated models will be saved.

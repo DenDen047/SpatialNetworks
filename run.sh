@@ -2,4 +2,4 @@
 
 cd docker && \
 docker-compose build && \
-docker-compose run main ./plot.sh
+docker-compose run main ./split.sh

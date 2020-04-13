@@ -4,6 +4,14 @@
 |---------|------|-------|--------|---------|------------|---------|
 | [![Version](https://img.shields.io/static/v1?label=&message=0.0.1&color=377EF0&style=for-the-badge)](https://arxiv.org/abs/1910.02776) | [![Documentation](https://img.shields.io/static/v1?label=&message=docs&color=EE4C2C&style=for-the-badge)](TBD)  | [![style](https://img.shields.io/static/v1?label=&message=CB&color=27A8E0&style=for-the-badge)](TBD) | [![Python](https://img.shields.io/static/v1?label=&message=3.7&color=377EF0&style=for-the-badge&logo=python&logoColor=F8C63D)](https://www.python.org/) | [![PyTorch](https://img.shields.io/static/v1?label=&message=1.2.0&color=EE4C2C&style=for-the-badge)](https://pytorch.org/) | [![Contribute](https://img.shields.io/static/v1?label=&message=guide&color=009688&style=for-the-badge)](https://github.com/szymonmaszke/torchdata/blob/master/CONTRIBUTING.md) | [![Roadmap](https://img.shields.io/static/v1?label=&message=roadmap&color=f50057&style=for-the-badge)](https://github.com/szymonmaszke/torchdata/blob/master/ROADMAP.md)
 
+## Usage
+
+You can run the sequence of commands: `train`, `split`, and `score`.
+
+```bash
+$ ./run.sh
+```
+
 ## 1. Paper abstract ([arxiv](https://arxiv.org/abs/1910.02776))
 
 We introduce bio-inspired artificial neural networks consisting of neurons that are additionally characterized by spatial positions.
@@ -52,7 +60,7 @@ Issue `python main.py <subsection> --help` to see available options for each sub
 To help with reproducibility later, please wrap your experiments commands with `dvc` (see their [documentation](https://dvc.org/doc)).
 
 
-## Basic Command
+### Basic Command
 
 usage: main.py [-h] [--cuda] --labels LABELS {train,record,plot,split,score} ...
 
@@ -72,7 +80,7 @@ optional arguments:
                         labels will become 5 datasets, 10 labels each).
 
 
-## Train
+### Train
 
 usage: main.py train [-h] --hyperparams HYPERPARAMS [--datasets DATASETS [DATASETS ...]] [--root ROOT] --layers LAYERS [LAYERS ...]
                      [--where WHERE [WHERE ...]] --type {linear,convolution} --input {sequential,concatenate,mix} --activation ACTIVATION --save SAVE
@@ -126,7 +134,7 @@ optional arguments:
                          Default: 0 (acts just like Linear)
   --norm {l1,l2}        Norm used in transport loss. Either L1 or L2. Case insensitive
 
-## Record
+### Record
 
 usage: main.py record [-h] --model MODEL --input {sequential,concatenate,mix} [--datasets DATASETS [DATASETS ...]] --reduction {mean,variance} --save SAVE
                       [--task] [--train] [--root ROOT]
@@ -162,7 +170,7 @@ optional arguments:
   --train               Whether to use training or validation dataset for plot generation. If specified, use training. Default: validation dataset.
   --root ROOT           Where downloaded datasets will be saved. By default inside your temporary folder.
 
-## Plot
+### Plot
 
 usage: main.py plot [-h] [--data DATA] [--model MODEL] --save SAVE
 
@@ -172,7 +180,7 @@ optional arguments:
   --model MODEL  Path to model whose spatial parameters will be plotted.
   --save SAVE    Path where generated plots will be saved.
 
-## Split
+### Split
 
 usage: main.py split [-h] --method {activations,greedy,rescale,probability} [--where WHERE [WHERE ...]] [--data DATA] --model MODEL --save SAVE
 
@@ -193,7 +201,7 @@ optional arguments:
   --model MODEL         Path to saved model.
   --save SAVE           Path (folder) where generated models will be saved.
 
-## Score
+### Score
 
 usage: main.py score [-h] --hyperparams HYPERPARAMS --models MODELS --input {sequential,concatenate,mix} [--datasets DATASETS [DATASETS ...]] --tensorboard TENSORBOARD [--task] [--train] [--root ROOT]
 
@@ -215,7 +223,7 @@ optional arguments:
   --train               Whether to use training or validation dataset to perform scoring.
   --root ROOT           Where downloaded datasets will be saved. By default inside your temporary folder.
 
-# Examples of model
+## Examples of model
 
 Model to be trained:
 MultipleOutputs(
